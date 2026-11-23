@@ -1,0 +1,10 @@
+trn => 74
+trn => 10
+trn => 3
+gdygdb => 12
+gdygdb => 3
+gdygdb => 12
+gdygdb => 2
+fyjyj => 14
+fyjyj => 
+fyjyj => 2

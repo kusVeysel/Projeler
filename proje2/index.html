@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JS Store | Ürünler</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f7fa;
+            color: #212529;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            min-height: 70px;
+        }
+
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #111827, #343a40);
+            color: white;
+            padding: 55px 0;
+        }
+
+        .hero h1 {
+            font-weight: 700;
+        }
+
+        .hero p {
+            color: #ced4da;
+        }
+
+        /* STAT CARDS */
+
+        .stat-card {
+            border: none;
+            border-radius: 15px;
+            transition: 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            font-size: 22px;
+            background: #f1f3f5;
+        }
+
+        /* FILTER AREA */
+
+        .filter-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* TABLE */
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            margin-bottom: 0 !important;
+        }
+
+        .table thead th {
+            white-space: nowrap;
+            padding: 15px 10px;
+        }
+
+        .table tbody td {
+            padding: 14px 10px;
+        }
+
+        .product-image {
+            width: 65px;
+            height: 65px;
+
+            object-fit: cover;
+
+            border-radius: 10px;
+        }
+
+        .product-name {
+            font-weight: 600;
+        }
+
+        .description {
+            max-width: 230px;
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* BADGES */
+
+        .featured {
+            background: #fff3cd;
+            color: #856404;
+
+            padding: 5px 9px;
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stock-good {
+            color: #198754;
+            font-weight: 600;
+        }
+
+        .stock-low {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        /* PRICE */
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .new-price {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111827;
+            color: #ced4da;
+            margin-top: 70px;
+        }
+
+        footer h5 {
+            color: white;
+        }
+
+        footer a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .social-icon {
+            width: 38px;
+            height: 38px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #1f2937;
+            border-radius: 50%;
+
+            margin-right: 5px;
+        }
+
+        /* LOADING */
+
+        #loading {
+            padding: 50px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            .hero {
+                text-align: center;
+                padding: 40px 20px;
+            }
+
+            .filter-box {
+                padding: 15px;
+            }
+
+            .stat-card {
+                margin-bottom: 10px;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================= -->
+    <!-- NAVBAR -->
+    <!-- ========================= -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="container">
+
+            <a class="navbar-brand brand-logo" href="#">
+                <i class="bi bi-shop"></i>
+                JS Store
+            </a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Ana Sayfa
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">
+                            Ürünler
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            Hakkımızda
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            İletişim
+                        </a>
+                    </li>
+
+                </ul>
+
+
+                <button class="btn btn-outline-light ms-lg-3">
+
+                    <i class="bi bi-cart3"></i>
+
+                    Sepet
+                    <span id="cartCount" class="badge bg-danger">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================= -->
+    <!-- HERO -->
+    <!-- ========================= -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <span class="badge bg-warning text-dark mb-3">
+                        Yeni Ürünler
+                    </span>
+
+                    <h1>
+                        İhtiyacınız olan her şey burada.
+                    </h1>
+
+                    <p class="lead">
+                        Kaliteli ürünleri keşfedin, fiyatları karşılaştırın
+                        ve size en uygun ürünü kolayca bulun.
+                    </p>
+
+                    <a href="#products" class="btn btn-light btn-lg">
+
+                        Ürünleri İncele
+
+                        <i class="bi bi-arrow-down"></i>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-lg-4 text-center d-none d-lg-block">
+
+                    <i class="bi bi-bag-check" style="font-size: 150px;"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- STATISTICS -->
+    <!-- ========================= -->
+
+    <section class="container mt-4">
+
+        <div class="row g-3">
+
+            <div class="col-md-3">
+
+                <div class="card stat-card shadow-sm">
+
+                    <div class="card-body d-flex align-items-center gap-3">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+                                Toplam Ürün
+                            </small>
+
+                            <h4 id="totalProducts" class="mb-0">
+                                0
+                            </h4>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="card stat-card shadow-sm">
+
+                    <div class="card-body d-flex align-items-center gap-3">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-tags"></i>
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+                                Kategori
+                            </small>
+
+                            <h4 id="totalCategories" class="mb-0">
+                                0
+                            </h4>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="card stat-card shadow-sm">
+
+                    <div class="card-body d-flex align-items-center gap-3">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+                                Ortalama Puan
+                            </small>
+
+                            <h4 id="averageRating" class="mb-0">
+                                0
+                            </h4>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="card stat-card shadow-sm">
+
+                    <div class="card-body d-flex align-items-center gap-3">
+
+                        <div class="stat-icon">
+                            <i class="bi bi-boxes"></i>
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+                                Toplam Stok
+                            </small>
+
+                            <h4 id="totalStock" class="mb-0">
+                                0
+                            </h4>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- PRODUCTS -->
+    <!-- ========================= -->
+
+    <section id="products" class="container mt-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <div>
+
+                <h2 class="fw-bold mb-1">
+                    Ürünler
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Güncel ürünlerimizi keşfedin.
+                </p>
+
+            </div>
+
+            <span class="badge text-bg-dark fs-6">
+                <span id="productCount">0</span> ürün
+            </span>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filter-box mb-4">
+
+            <div class="row g-3">
+
+                <div class="col-lg-5">
+
+                    <label class="form-label fw-semibold">
+                        Ürün Ara
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+
+                        <input type="text" id="searchInput" class="form-control"
+                            placeholder="Ürün adı, marka veya kategori...">
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <label class="form-label fw-semibold">
+                        Kategori
+                    </label>
+
+                    <select id="categoryFilter" class="form-select">
+
+                        <option value="all">
+                            Tüm Kategoriler
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <label class="form-label fw-semibold">
+                        Sıralama
+                    </label>
+
+                    <select id="sortSelect" class="form-select">
+
+                        <option value="default">
+                            Varsayılan
+                        </option>
+
+                        <option value="price-low">
+                            Fiyat: Düşük → Yüksek
+                        </option>
+
+                        <option value="price-high">
+                            Fiyat: Yüksek → Düşük
+                        </option>
+
+                        <option value="rating">
+                            En Yüksek Puan
+                        </option>
+
+                        <option value="stock">
+                            En Fazla Stok
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="col-lg-1 d-flex align-items-end">
+
+                    <button id="clearFilters" class="btn btn-outline-secondary w-100" title="Filtreleri temizle">
+
+                        <i class="bi bi-arrow-counterclockwise"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-container">
+
+            <div id="loading">
+
+                <div class="text-center">
+
+                    <div class="spinner-border text-dark" role="status"></div>
+
+                    <p class="mt-3 text-muted">
+                        Ürünler yükleniyor...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table id="productTable" class="table table-hover align-middle text-center" style="display: none;">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Ürün</th>
+
+                            <th>Kategori</th>
+
+                            <th>Marka</th>
+
+                            <th>Fiyat</th>
+
+                            <th>Stok</th>
+
+                            <th>Puan</th>
+
+                            <th>Yorum</th>
+
+                            <th>İndirim</th>
+
+                            <th>Öne Çıkan</th>
+
+                            <th>İşlem</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tbody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div id="emptyMessage" class="text-center p-5" style="display: none;">
+
+                <i class="bi bi-search" style="font-size: 50px;"></i>
+
+                <h4 class="mt-3">
+                    Ürün bulunamadı
+                </h4>
+
+                <p class="text-muted">
+                    Arama veya filtre kriterlerinizi değiştirmeyi deneyin.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        <div class="d-flex justify-content-center mt-4">
+
+            <nav>
+
+                <ul id="pagination" class="pagination"></ul>
+
+            </nav>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- ABOUT -->
+    <!-- ========================= -->
+
+    <section id="about" class="container mt-5">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-6">
+
+                <span class="badge text-bg-dark mb-2">
+                    Hakkımızda
+                </span>
+
+                <h2 class="fw-bold">
+                    Modern ve kolay alışveriş deneyimi
+                </h2>
+
+                <p class="text-muted">
+
+                    JS Store, kullanıcıların ihtiyaç duyduğu ürünleri
+                    hızlı ve kolay şekilde bulabilmesi için hazırlanmış
+                    örnek bir JavaScript e-ticaret projesidir.
+
+                </p>
+
+                <p class="text-muted">
+
+                    Ürünler JSON dosyasından alınmakta ve JavaScript
+                    kullanılarak dinamik olarak tabloya aktarılmaktadır.
+
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <div class="row g-3">
+
+                    <div class="col-6">
+
+                        <div class="card border-0 shadow-sm p-4 text-center">
+
+                            <i class="bi bi-lightning-charge fs-1"></i>
+
+                            <h5 class="mt-2">
+                                Hızlı
+                            </h5>
+
+                            <small class="text-muted">
+                                Kolay ürün keşfi
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="card border-0 shadow-sm p-4 text-center">
+
+                            <i class="bi bi-shield-check fs-1"></i>
+
+                            <h5 class="mt-2">
+                                Güvenli
+                            </h5>
+
+                            <small class="text-muted">
+                                Modern yapı
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="card border-0 shadow-sm p-4 text-center">
+
+                            <i class="bi bi-phone fs-1"></i>
+
+                            <h5 class="mt-2">
+                                Responsive
+                            </h5>
+
+                            <small class="text-muted">
+                                Tüm cihazlara uygun
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="card border-0 shadow-sm p-4 text-center">
+
+                            <i class="bi bi-code-slash fs-1"></i>
+
+                            <h5 class="mt-2">
+                                JavaScript
+                            </h5>
+
+                            <small class="text-muted">
+                                Dinamik veri
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer id="contact" class="mt-5 pt-5 pb-3">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+                <div class="col-lg-4">
+
+                    <h5>
+                        <i class="bi bi-shop"></i>
+                        JS Store
+                    </h5>
+
+                    <p>
+                        Modern JavaScript ve Bootstrap kullanılarak
+                        hazırlanmış örnek web projesi.
+                    </p>
+
+                    <div>
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-github"></i>
+                        </a>
+
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-2">
+
+                    <h5>Menü</h5>
+
+                    <p>
+                        <a href="#">
+                            Ana Sayfa
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="#products">
+                            Ürünler
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="#about">
+                            Hakkımızda
+                        </a>
+                    </p>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <h5>Kategoriler</h5>
+
+                    <p>
+                        <a href="#">
+                            Elektronik
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="#">
+                            Giyim
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="#">
+                            Ev & Yaşam
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="#">
+                            Spor
+                        </a>
+                    </p>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <h5>İletişim</h5>
+
+                    <p>
+                        <i class="bi bi-envelope"></i>
+                        info@jsstore.com
+                    </p>
+
+                    <p>
+                        <i class="bi bi-telephone"></i>
+                        +90 555 123 45 67
+                    </p>
+
+                    <p>
+                        <i class="bi bi-geo-alt"></i>
+                        Ankara, Türkiye
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <hr class="mt-4">
+
+
+            <div class="text-center">
+
+                <small>
+                    © 2026 JS Store — Tüm hakları saklıdır.
+                </small>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+    <!-- Kendi JS dosyamız -->
+
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>

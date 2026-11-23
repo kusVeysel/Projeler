@@ -1,0 +1,13 @@
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\bin\Debug\MayinTarlasi.exe.config
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\bin\Debug\MayinTarlasi.exe
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\bin\Debug\MayinTarlasi.pdb
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.csproj.AssemblyReference.cache
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.Form1.resources
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.Properties.Resources.resources
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.csproj.GenerateResource.cache
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.csproj.CoreCompileInputs.cache
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.exe
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.pdb
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.Form2.resources
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.Form3.resources
+C:\Users\Turan\Desktop\HS260725\Mayın Tarlası\MayinTarlasiSLN\MayinTarlasi\obj\Debug\MayinTarlasi.Form4.resources
